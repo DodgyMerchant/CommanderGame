@@ -1,0 +1,7 @@
+/// @func scr_name(arg1, arg2...);
+/// @desc description
+/// @arg {real} arg1 description
+/// @arg {real} arg2 description
+
+
+

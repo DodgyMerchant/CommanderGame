@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+
+
+view_camera[0]
+
+
+//room stuff
+room_set_view_enabled
+room_set_viewport
+room_get_viewport
+room_set_camera
+room_get_camera
+
+
+camera_create
