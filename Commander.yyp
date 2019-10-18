@@ -71,6 +71,14 @@
             }
         },
         {
+            "Key": "1e441fdc-3325-4397-915f-3661130be97f",
+            "Value": {
+                "id": "ec084115-964a-4f2f-affd-33e574e7c643",
+                "resourcePath": "objects\\obj_menu\\obj_menu.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "2349c6ab-e6a7-4120-94d4-35e5da1b9ab5",
             "Value": {
                 "id": "884bcca4-89a2-4116-a4bf-d1842095215f",
@@ -119,22 +127,6 @@
             }
         },
         {
-            "Key": "33634c94-b392-4387-9e8a-14a6330a1256",
-            "Value": {
-                "id": "c21b56f9-b86c-4bee-a782-f413b8aead0a",
-                "resourcePath": "objects\\obj_gmlive\\obj_gmlive.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "34ebc914-3fea-42f7-a6b9-db18b75cd055",
-            "Value": {
-                "id": "96df988a-d5cc-489a-b573-bf3c8fdd04b8",
-                "resourcePath": "extensions\\GMLive\\GMLive.yy",
-                "resourceType": "GMExtension"
-            }
-        },
-        {
             "Key": "368855e9-319f-4d76-9119-f46a8b3ed1dc",
             "Value": {
                 "id": "fbe6c55f-f53f-46aa-8d61-7080d03f28a5",
@@ -175,27 +167,11 @@
             }
         },
         {
-            "Key": "421e2dec-572b-4bc9-9b12-20bbf02c2cc1",
-            "Value": {
-                "id": "98bffa8a-be0a-43c5-b48b-3fb31708cc05",
-                "resourcePath": "datafiles_yy\\gmlive-server.exe.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "43a73d5a-d5ca-41d0-9811-127b52fe63ef",
             "Value": {
                 "id": "40614850-11df-4f06-9cb3-6bf82cbf463a",
                 "resourcePath": "scripts\\scr_drawbetter_rec\\scr_drawbetter_rec.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "497a6328-a64b-4954-97cf-e28e893b669c",
-            "Value": {
-                "id": "590053db-a9da-4670-b637-e2685b071645",
-                "resourcePath": "datafiles_yy\\gmlive-server.n.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -271,14 +247,6 @@
             }
         },
         {
-            "Key": "72891dfb-2f99-43df-87de-3d9a7dfe6f27",
-            "Value": {
-                "id": "652b2b93-0c68-483a-9f42-2bf62be0ef5f",
-                "resourcePath": "datafiles_yy\\neko.dll.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "7c76fc2c-0196-44d2-8621-d292742569a5",
             "Value": {
                 "id": "d63ea3a1-6a3f-40cd-bde3-5cbc4ec56599",
@@ -303,14 +271,6 @@
             }
         },
         {
-            "Key": "7fe161d7-24fa-43a3-8a82-443b06f31dba",
-            "Value": {
-                "id": "24014de2-a6a5-42f4-8829-629746ff100e",
-                "resourcePath": "datafiles_yy\\regexp.ndll.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "80fe9533-48ad-4268-be5d-b7760ab3e210",
             "Value": {
                 "id": "31d708ef-2e22-4f85-bd7c-ca0b09a88223",
@@ -324,6 +284,14 @@
                 "id": "6d0a18d8-af96-4942-90a2-c65aaa68a13e",
                 "resourcePath": "views\\816d2ce3-e449-42cb-89b3-2ed0ae979b28.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "820577d7-f7db-49ba-bb7e-a97507c72704",
+            "Value": {
+                "id": "d62f9a2a-be18-49eb-a311-302fd4dc6649",
+                "resourcePath": "scripts\\scr_timeconvert\\scr_timeconvert.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -367,14 +335,6 @@
             }
         },
         {
-            "Key": "a17e93ca-0508-4241-ba28-77adffbb61db",
-            "Value": {
-                "id": "c3d5ca4e-56f3-4baa-99ba-3df33801ec23",
-                "resourcePath": "datafiles_yy\\gc.dll.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
             "Value": {
                 "id": "7f216dfd-b7a6-4898-9280-2de03cd920bb",
@@ -395,6 +355,14 @@
             "Value": {
                 "id": "3bb77b1c-7756-4e12-8b9b-dac7da89607e",
                 "resourcePath": "scripts\\scr_zoom_value\\scr_zoom_value.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "b8dc7115-bad7-4b35-a0cf-90160332d0c3",
+            "Value": {
+                "id": "3506133d-e336-4cb3-91dd-60624b01ad6c",
+                "resourcePath": "scripts\\scr_dw_clear\\scr_dw_clear.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -455,11 +423,11 @@
             }
         },
         {
-            "Key": "ca1bbcea-c4e2-4177-9d24-824a64f85088",
+            "Key": "c9d9dcdb-d5d8-434c-975a-7535817943b2",
             "Value": {
-                "id": "51f6be12-c0b3-42a6-9e80-1a188c5a7d16",
-                "resourcePath": "datafiles_yy\\gmlive.html.yy",
-                "resourceType": "GMIncludedFile"
+                "id": "db68f375-ad48-478d-ab60-d190638fbe46",
+                "resourcePath": "scripts\\scr_dw_dialoge_create\\scr_dw_dialoge_create.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -476,14 +444,6 @@
                 "id": "8523413c-dade-442f-8056-dae142b6ab77",
                 "resourcePath": "options\\windows\\options_windows.yy",
                 "resourceType": "GMWindowsOptions"
-            }
-        },
-        {
-            "Key": "dbb547c5-d246-4ebf-b694-fce3c4dd25b2",
-            "Value": {
-                "id": "0e3ddc7c-f6a8-4cbe-891c-e750076bc9bd",
-                "resourcePath": "datafiles_yy\\std.ndll.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -509,6 +469,14 @@
                 "resourcePath": "rooms\\rm_level_1\\rm_level_1.yy",
                 "resourceType": "GMRoom"
             }
+        },
+        {
+            "Key": "fd8c7fca-9b59-40f7-ba95-a3d8dd93bf16",
+            "Value": {
+                "id": "890af455-53cd-43bf-91a5-6f93057b914e",
+                "resourcePath": "views\\fd8c7fca-9b59-40f7-ba95-a3d8dd93bf16.yy",
+                "resourceType": "GMFolder"
+            }
         }
     ],
     "script_order": [
@@ -526,7 +494,10 @@
         "2349c6ab-e6a7-4120-94d4-35e5da1b9ab5",
         "96d0546c-83a0-4437-a1c0-a7cda2b7a91c",
         "43a73d5a-d5ca-41d0-9811-127b52fe63ef",
-        "3c4f8709-4697-4c9e-8183-8f4c66a2aa19"
+        "3c4f8709-4697-4c9e-8183-8f4c66a2aa19",
+        "c9d9dcdb-d5d8-434c-975a-7535817943b2",
+        "b8dc7115-bad7-4b35-a0cf-90160332d0c3",
+        "820577d7-f7db-49ba-bb7e-a97507c72704"
     ],
     "tutorial": ""
 }

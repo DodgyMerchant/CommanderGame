@@ -7,6 +7,8 @@
 /// @arg {real} col description
 /// @arg {real} alpha description
 
+
+
 /*
 argument0	= x1
 argument1	= y1
@@ -16,10 +18,7 @@ argument4	= col
 argument5	= alpha
 */
 
-draw_sprite_ext(spr_pixel,0,
-argument0,
-argument1,
-argument2 - argument0,
-argument3 - argument1,
-0,
-argument4,argument5);
+var _rot = point_direction(argument0,argument1,argument2,argument3);
+var _dis = point_distance(argument0,argument1,argument2,argument3);
+
+draw_sprite_ext(spr_pixel,0,argument0,argument1,_dis,1,_rot,argument4,argument5);

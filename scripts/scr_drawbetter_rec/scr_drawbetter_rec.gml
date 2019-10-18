@@ -4,6 +4,8 @@
 /// @arg {real} y1 description
 /// @arg {real} x2 description
 /// @arg {real} y2 description
+/// @arg {real} col description
+/// @arg {real} alpha description
 
 /*
 argument0	= x1

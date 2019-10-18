@@ -1,6 +1,10 @@
 /// @desc 
 
 
+
+var _view_w = camera_get_view_width(view_camera[0]);
+var _view_h = camera_get_view_height(view_camera[0]);
+
 #region input
 
 var _input_mouse_l		= mouse_check_button(mb_left)
@@ -27,9 +31,20 @@ var _input_alt		= keyboard_check(vk_alt);
 
 var _input_arrow_any=_input_left+_input_left_p+_input_right+_input_right_p+_input_down+_input_down_p+_input_up+_input_up_p;
 
+var _input_mouse_w = mouse_wheel_down() - mouse_wheel_up();
+
+#endregion
+#region mission
+
+//passed time
+mission_time=current_time - mission_start;// passed time
+mission_time_string=scr_timeconvert(mission_time);// "00:00:00"  shows the passed mission time
+
+
 #endregion
 #region Operation Window Input
 
+#region INFO
 /*
 mod keys:
 ctrl	modify funktion
@@ -53,10 +68,8 @@ snap to nearest unit/cycle					|	shift + alt		|	tap				|
 alt + ctrl		taken by screen rotate
 
 
-
-
-
 */
+#endregion
 
 var _cell_num_w=(ow_w - ow_grid_dead_size*2) / ow_grid_cell_size;//number of cells that can be displayed w
 var _cell_num_h=(ow_h - ow_grid_dead_size*2) / ow_grid_cell_size;//number of cells that can be displayed w
@@ -263,4 +276,18 @@ else //move select
 	}
 
 #endregion
+#endregion
+#region dialogue window
+
+var _x1 = UI_element_window_sep_w;
+var _x2 = ow_x - UI_element_sep_w;
+var _y1 = _view_h - UI_element_window_sep_h - dw_height;
+var _y2 = _view_h - UI_element_window_sep_h;
+
+if point_in_rectangle(mouse_x,mouse_y,_x1,_y1,_x2,_y2)
+	{
+	if _input_mouse_w!=0
+		dw_index += _input_mouse_w;
+	}
+
 #endregion

@@ -6,7 +6,7 @@
 
 if keyboard_check(vk_control) or global.debug
 {
-
+//basics
 #region J				Activate Debug
 
 if keyboard_check_pressed(ord("J"))
@@ -31,7 +31,9 @@ if keyboard_check_pressed(vk_escape)
 	}
 
 #endregion
-#region arrow keys		Camera Controll
+
+//custom
+#region arrow keys		Camera Controll		INACTIVE
 /*
 var _x_input = keyboard_check(vk_right) - keyboard_check(vk_left);
 var _y_input = keyboard_check(vk_down) - keyboard_check(vk_up);
@@ -47,8 +49,8 @@ if _x_input!=0 or _y_input!=0
 	}
 */
 #endregion
-#region camera mumbo jumbo
-
+#region camera mumbo jumbo					INACTIVE
+/*
 if keyboard_check_pressed(ord("N"))
 	{
 	obj_handler.camera_trueposition=!obj_handler.camera_trueposition;
@@ -57,24 +59,27 @@ if keyboard_check_pressed(ord("M"))
 	{
 	obj_handler.appsurf_resize_type=scr_wrap_around(obj_handler.appsurf_resize_type+1,0,APPSURF_RESIZE_TYPE.HEIGHT-1);
 	}
-
-
+*/
 #endregion
-#region I				Room change
+#region I +- Shift	Room switch
 
+//switches through 
 if keyboard_check_pressed(ord("I"))
 	{
-	if room_exists(room+1)
-		room_goto_next()
-	else
-		room_goto(0);
+	room_goto( scr_wrap_around(room+ (!keyboard_check(vk_shift)? 1: -1) ,room_first,room_last));
 	}
 
 #endregion
 
 
+//very temp
+#region temp
 
+if keyboard_check_pressed(vk_space)
+	{
+	with(obj_game) scr_dw_dialoge_create("MEMES");
+	}
 
-
+#endregion
 }
 #endregion

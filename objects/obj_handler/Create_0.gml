@@ -87,10 +87,6 @@ global.Zoom_value=(_view_h - zoom_min_h) / (zoom_max_h - zoom_min_h);
 zoom_seek=global.Zoom_value;	//the zoom value that is to seek
 
 
-
-
-
-
 #endregion
 #region application
 
@@ -115,14 +111,15 @@ else if global.AppSurf_ori=="window"
 	}
 
 
-view_camera[0] = camera_create_view(0,0,_view_w,_view_h);
+var _cam = camera_create_view(0,0,_view_w,_view_h);
+view_camera[0] = _cam;
 view_visible[0] = true;
 view_enabled = true;
 
-view_set_xport(view_camera[0],0);
-view_set_yport(view_camera[0],0);
-view_set_wport(view_camera[0],_window_w);
-view_set_hport(view_camera[0],_window_h);
+view_set_xport(0,0);
+view_set_yport(0,0);
+view_set_wport(0,_window_w);
+view_set_hport(0,_window_h);
 
 window_set_size(_window_w,_window_h);
 surface_resize(application_surface,_surf_w,_surf_h); //norm size
@@ -132,7 +129,15 @@ display_set_gui_size(_gui_w,_gui_h);
 //queue stuff
 alarm[0] = 1;
 
+//try to apply settings to all cameras
 
+//room_get_camera(room,0)
+for (var i=room_first;i<=room_last;i++)
+	{
+	room_set_camera(i,0,_cam);
+	room_set_view_enabled(i,true);
+	room_set_viewport(i,0,true,0,0,_window_w,_window_h);
+	}
 #endregion
 #region appsurface2 electric boogaloo
 /*
@@ -151,5 +156,6 @@ if _window_w < _surf_w or _window_h < _surf_h
 	show_debug_message("!!!WARNING!!!  INIT /// VIEW_SETUP /// appsurf larger than window");
 
 #endregion
+
 
 #endregion views

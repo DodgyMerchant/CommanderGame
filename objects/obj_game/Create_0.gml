@@ -4,6 +4,13 @@
 /*
 TO DO NOW:
 
+pre:
+700fps
+104 swaps
+110 swaps
+
+after:
+
 
 
 
@@ -28,6 +35,13 @@ input_repetition_timer=5;//after how many frames pressing the input ut starts to
 input_repetition_freq=2;//how many frames delay there is after each repetition
 
 #endregion
+#region mission
+
+mission_start=current_time;//start time
+mission_time=current_time - mission_start;// passed time
+mission_time_string=scr_timeconvert(mission_time);// "00:00:00"  shows the passed mission time
+
+#endregion
 #region select
 
 select_list=ds_list_create();//list of selected instances
@@ -41,7 +55,6 @@ select_y2=-1;
 
 #endregion
 
-
 #region UI elements
 #region general
 
@@ -51,25 +64,30 @@ crt_color=c_lime;
 UI_element_sep_w = 10;
 UI_element_sep_h = 10;
 
-frame_sep_w=10;	//seperatin of the frame from the window border
+frame_sep_w=10;	//seperation of the frame from the window border
 frame_sep_h=10;
 frame_sep2_w=10;//seperation to the sides of the right frame
 frame_sep2_h=10;//seperation to the sides of the bottom frame
 
-frame_alpha=0.7;//alpha of the frame
-pointer_line_w = 1;
+frame_alpha=0.2;//alpha of the frame
 
 UI_element_window_sep_w = frame_sep_w + frame_sep2_w;
-UI_element_window_sep_h = frame_sep_w + frame_sep2_w;
+UI_element_window_sep_h = frame_sep_h + frame_sep2_h;
 
 #endregion
 #region pointer
 
-pointer_line_part_leng=4;	//for a striped pointer
-pointer_line_sep_leng=4;	//for a striped pointer
+//pointer_line_w = 1;	//width of the line //not used
 pointer_alpha_norm=0.3;
 pointer_alpha_ow=0.7;
 pointer_alpha_ow_move=0.5;
+
+
+//unused striped pointer vars
+/*
+pointer_line_part_leng=4;	//for a striped pointer
+pointer_line_sep_leng=4;	//for a striped pointer
+*/
 
 
 #endregion
@@ -114,6 +132,37 @@ ow_grid_cell_select_alpha_speed=1;
 
 
 #endregion
+#region dialogue window
+
+//!!width fit the window
+dw_frame_alpha=0.5;	//
+dw_fill_alpha=0.5;	//the rec that fills the frame
+dw_index=0; //which dialogue message is focused
+dw_font= fn_normal;
+var _dw_row_number = 6;//numer of indexes to display
+
+draw_set_font(dw_font);
+dw_height = string_height("A")*_dw_row_number;
+
+//system
+dw_list=ds_list_create();
+dw_list[| 0]=-1;
+
+
+#region enums
+
+enum DW_LIST
+	{
+	text,
+	time,
+	HEIGHT
+	}
+
+#endregion
+
+
+#endregion
+#endregion
 #region map conversion
 
 #macro MAP_CELL_SIZE 16	//size of the cells on the room editor map || used for room to map translation
@@ -123,18 +172,6 @@ ow_grid_cell_select_alpha_speed=1;
 
 
 
-#endregion
-#region dialogue window
-
-//width fit the window
-dw_height = 100;
-dw_base_alpha=1;
-
-
-
-
-
-#endregion
 #endregion
 
 #region test
