@@ -36,7 +36,7 @@ var _input_mouse_w = mouse_wheel_down() - mouse_wheel_up();
 #endregion
 #region mission
 
-//passed time
+//passed time   updating time
 mission_time=current_time - mission_start;// passed time
 mission_time_string=scr_timeconvert(mission_time);// "00:00:00"  shows the passed mission time
 
@@ -117,6 +117,9 @@ if point_in_rectangle(mouse_x,mouse_y,ow_x,ow_y,ow_x+ow_w,ow_y+ow_h)
 		//set start for field creation
 		select_start_x=select_x1;
 		select_start_y=select_y1;
+		
+		//start alpha wave
+		ow_grid_select_alpha_start = current_time;
 		}
 	if _input_mouse_l
 		{
@@ -284,10 +287,12 @@ var _x2 = ow_x - UI_element_sep_w;
 var _y1 = _view_h - UI_element_window_sep_h - dw_height;
 var _y2 = _view_h - UI_element_window_sep_h;
 
+//mouse in dialogue window
 if point_in_rectangle(mouse_x,mouse_y,_x1,_y1,_x2,_y2)
 	{
+	//moue idex scrolling
 	if _input_mouse_w!=0
-		dw_index += _input_mouse_w;
+		dw_index = clamp(dw_index - _input_mouse_w,0,max(0,ds_list_size(dw_list)-1));
 	}
 
 #endregion

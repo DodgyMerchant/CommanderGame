@@ -1,6 +1,5 @@
 /// @desc 
 
-
 /*
 TO DO NOW:
 
@@ -10,8 +9,6 @@ pre:
 110 swaps
 
 after:
-
-
 
 
 */
@@ -61,13 +58,16 @@ select_y2=-1;
 global.Alpha_master=1;
 crt_color=c_lime;
 
-UI_element_sep_w = 10;
-UI_element_sep_h = 10;
+#macro UI_GENERAL_SEP 10
+#macro UI_GENERAL_PAD 4
 
-frame_sep_w=10;	//seperation of the frame from the window border
-frame_sep_h=10;
-frame_sep2_w=10;//seperation to the sides of the right frame
-frame_sep2_h=10;//seperation to the sides of the bottom frame
+UI_element_sep_w = UI_GENERAL_SEP;
+UI_element_sep_h = UI_GENERAL_SEP;
+
+frame_sep_w=UI_GENERAL_SEP;	//seperation of the frame from the window border
+frame_sep_h=UI_GENERAL_SEP;
+frame_sep2_w=UI_GENERAL_SEP;//seperation to the sides of the right frame
+frame_sep2_h=UI_GENERAL_SEP;//seperation to the sides of the bottom frame
 
 frame_alpha=0.2;//alpha of the frame
 
@@ -97,9 +97,9 @@ pointer_line_sep_leng=4;	//for a striped pointer
 ow_mouse_active=false;
 
 //grid
-ow_grid_dead_size=5;//5	//size of dead space in the window
+ow_grid_dead_size=UI_GENERAL_PAD + 1 ;//5	//size of dead space in the window //1 for the 1pixel border line
 ow_grid_cell_size=30;//size of the displayed cells in pixels // 1x1
-ow_grid_cell_dead_size=4;//4	//dead space of the inner cell to the outer cell
+ow_grid_cell_dead_size=UI_GENERAL_PAD;//4	//dead space of the inner cell to the outer cell
 ow_grid_cell_display_w=7;//displayed cells horizontally
 ow_grid_cell_display_h=7;//displayed cells vertically
 ow_grid=ds_grid_create(room_width div MAP_CELL_SIZE,room_height div MAP_CELL_SIZE);// 50 50
@@ -128,26 +128,35 @@ ow_grid_select_alpha_speed=1;
 ow_grid_cell_alpha=0.05;
 ow_grid_cell_select_alpha_max=0.3;
 ow_grid_cell_select_alpha_min=0.1;
-ow_grid_cell_select_alpha_speed=1;
 
+ow_grid_select_alpha_speed=1;//in seconds
+ow_grid_select_alpha_start=0;//holds the game time the alpha wave has to start
 
 #endregion
 #region dialogue window
 
 //!!width fit the window
 dw_frame_alpha=0.5;	//
-dw_fill_alpha=0.5;	//the rec that fills the frame
+dw_frame_sep=UI_GENERAL_PAD;
+dw_fill_alpha=0.1;	//the rec that fills the frame
 dw_index=0; //which dialogue message is focused
-dw_font= fn_normal;
-var _dw_row_number = 6;//numer of indexes to display
+dw_font= fn_normal;//font used in the dialogue window
+dw_line_sep=1;//seperation between the lines of text
+dw_line_number = 6;//numer of indexes to display
+dw_end_phrase="END OF LOG";//the phrase shown at the top of the log
+dw_end_decor="/";//the decore chars displayed with the phrase
 
 draw_set_font(dw_font);
-dw_height = string_height("A")*_dw_row_number;
+dw_height = string_height("A")*dw_line_number + dw_frame_sep*2 + dw_line_sep*(dw_line_number-1);
 
 //system
 dw_list=ds_list_create();
-dw_list[| 0]=-1;
 
+//
+dw_notify_num = 2;
+dw_notify_duration = 0.5;//in seconds
+dw_notify_count=0;
+dw_notify_start=0;//holds the game time the wave is suposed to start
 
 #region enums
 
@@ -159,7 +168,6 @@ enum DW_LIST
 	}
 
 #endregion
-
 
 #endregion
 #endregion
@@ -173,6 +181,9 @@ enum DW_LIST
 
 
 #endregion
+
+
+
 
 #region test
 

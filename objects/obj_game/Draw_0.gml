@@ -13,7 +13,8 @@ var _view_w = camera_get_view_width(view_camera[0]);
 var _view_h = camera_get_view_height(view_camera[0]);
 
 
-draw_set_color(c_red);
+//draw_set_color(c_red);
+draw_set_color(crt_color);
 //crt_color
 
 #region frame
@@ -57,13 +58,16 @@ var _alpha; // _alpha =
 //select positions relative to the grid position
 
 
+//wave alpha
+var _prog = (current_time-ow_grid_select_alpha_start)*0.001 / ow_grid_select_alpha_speed;
+
 //vert lines
 for (var i= ow_grid_x!=0;i<_cell_num_w + (ow_grid_x==(_grid_w-_cell_num_w));i++)
 	{
 	//select alpha
 	//sonething selected  &  edges of selected region
 	if select_x1!=-1 and (i == _x1 or i == _x2+1)
-		_alpha = scr_wave(ow_grid_select_alpha_max, ow_grid_select_alpha_min, ow_grid_select_alpha_speed, 0) * global.Alpha_master;
+		_alpha = ow_grid_select_alpha_min + scr_wave2(ow_grid_select_alpha_max - ow_grid_select_alpha_min,_prog) * global.Alpha_master;
 	//border alpha
 	else if i==0 or i==_cell_num_w
 		_alpha = ow_grid_border_alpha * global.Alpha_master;//border alpha
@@ -82,7 +86,7 @@ for (var i= ow_grid_y!=0;i<_cell_num_h + (ow_grid_y==(_grid_h-_cell_num_h));i++)
 	//select alpha
 	//sonething selected  &  edges of selected region
 	if select_x1!=-1 and (i == _y1 or i == _y2+1)
-		_alpha = scr_wave(ow_grid_select_alpha_max, ow_grid_select_alpha_min, ow_grid_select_alpha_speed, 0) * global.Alpha_master;
+		_alpha = ow_grid_select_alpha_min + scr_wave2(ow_grid_select_alpha_max - ow_grid_select_alpha_min,_prog) * global.Alpha_master;
 	//border alpha
 	else if i==0 or i==_cell_num_h
 		_alpha = ow_grid_border_alpha * global.Alpha_master;//border alpha
@@ -104,7 +108,7 @@ for (var ii=0;ii<_cell_num_h;ii++)
 	//get alpha
 	//if ow_grid_cell_select_x == ow_grid_x+i and ow_grid_cell_select_y == ow_grid_y+ii
 	if point_in_rectangle(ow_grid_x+i,ow_grid_y+ii,select_x1,select_y1,select_x2,select_y2)
-		_alpha = scr_wave(ow_grid_cell_select_alpha_max, ow_grid_cell_select_alpha_min, ow_grid_cell_select_alpha_speed, 0) * global.Alpha_master;
+		_alpha = ow_grid_cell_select_alpha_min + scr_wave2(ow_grid_cell_select_alpha_max - ow_grid_cell_select_alpha_min,_prog) * global.Alpha_master;
 	else
 		_alpha = ow_grid_cell_alpha * global.Alpha_master;
 	
@@ -131,28 +135,77 @@ var _x2 = ow_x - UI_element_sep_w;
 var _y1 = _view_h - UI_element_window_sep_h - dw_height;
 var _y2 = _view_h - UI_element_window_sep_h;
 
-#region draw frame
-scr_drawbetter_frame(_x1,_y1,_x2,_y2,crt_color,dw_frame_alpha*global.Alpha_master,1);
+#region draw frame and fill
+
+//temp
+if dw_notify_count>0
+	dw_notify_count--;
+
+//frame
+var _alpha=dw_frame_alpha;
+if dw_notify_count!=0 //if blinking
+	//blink wave
+	_alpha*= scr_wave2(-1,(current_time-dw_notify_start)*0.001/dw_notify_duration)+1;
+scr_drawbetter_frame(_x1,_y1,_x2,_y2,crt_color,_alpha*global.Alpha_master,1);
+
+//fill
+_x1 += dw_frame_sep;
+_y1 += dw_frame_sep;
+_x2 -= dw_frame_sep;
+_y2 -= dw_frame_sep;
+scr_drawbetter_rec(_x1,_y1,_x2,_y2,crt_color,dw_fill_alpha*global.Alpha_master);
+
 #endregion
 #region draw text
-draw_set_valign(0);
+draw_set_valign(2);//bottom bound
 draw_set_halign(0);
 draw_set_alpha(1);
 draw_set_font(dw_font);
 
-var _list,_str;
-var _h = _y1;
-
-if dw_list[| 0] != -1
-for (var i=0;i<ds_list_size(dw_list);i++)
+if !ds_list_empty(dw_list)//check for empty
 	{
-	//get list and stuff
-	_list = dw_list[| i];
-	_str = _list[| DW_LIST.time]+"> "+_list[| DW_LIST.text];
-	//draw string
-	draw_text(_x1,_h,_str);
-	//move height
-	_h += string_height(_str);
+	var _w = _x2-_x1;//width of the text box
+	var _h = _y2;
+	var _list,_str,_str_height,_str_height_ext;
+	//loop
+	var _size=ds_list_size(dw_list);
+	
+	//display text
+	var i=(_size-1)-dw_index;
+	var _line=0;
+	while(_line<dw_line_number and i>=0)
+		{
+		//get list and stuff
+		_list = dw_list[| i];
+		_str = _list[| DW_LIST.time]+"> "+_list[| DW_LIST.text];
+		_str_height=string_height(_str)+dw_line_sep;
+		_str_height_ext=string_height_ext(_str,_str_height,_w)+dw_line_sep;
+		
+		_line+= _str_height_ext div _str_height;
+		
+		//draw string
+		if _line-1<dw_line_number
+			draw_text_ext(_x1,_h,_str,_str_height,_w);
+			//draw_text_ext(_x1,_h,_str+"|"+string(_str_height)+"|"+string(_str_height_ext),_str_height,_w);
+		//move height
+		_h -= _str_height_ext;
+		i--;
+		}
+	if i ==-1//if list it at end
+		{
+		//display end phrase
+		var _str="";
+		var _phrase_w=string_width(dw_end_phrase);
+		var _decor_w=string_width(dw_end_decor);
+		var _decor_space=(_w-_phrase_w)/2;
+		//gen decor
+		repeat(_decor_space div _decor_w)
+			{
+			_str+=dw_end_decor;
+			}
+		//draw phrase and decor
+		draw_text(_x1,_h,_str + dw_end_phrase + _str);
+		}
 	}
 #endregion
 

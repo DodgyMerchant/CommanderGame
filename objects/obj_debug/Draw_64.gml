@@ -36,6 +36,7 @@ _y = scr_debug_txt(0,_y,
 "room: "+string(room),
 "w|h: "+string(room_width)+"|"+string(room_height),
 "camera: "+string(_cam),
+
 /*
 "//////VIEW//////",
 "enabled: "+string(view_enabled),
@@ -80,6 +81,7 @@ _y = scr_debug_txt(0,_y,
 "//////DIALOGUE WINDOW//////",
 "d num: "+string(ds_list_size(dw_list)),
 "index: "+string(dw_index),
+"notify count: "+string(dw_notify_count),
 
 //*/
 );
@@ -117,4 +119,29 @@ if instance_exists(obj_game)
 draw_set_alpha(1);
 }
 #endregion end of debug
+
+
+
+/*
+var _gui_w=display_get_gui_width();
+var _gui_h=display_get_gui_height();
+
+//dist lines
+var _lines = 5;
+var _dist = 25;
+
+for (var i=-_lines;i<=_lines;i++)
+	{
+	var _y = _gui_h/2 + _dist * i;
+	scr_drawbetter_line(0,_y,_gui_w,_y,c_blue,0.5 *     ((abs(i)/(_lines+1))*-1+1)   );
+	}
+
+
+var _y = scr_wave2(-50,(current_time)*0.001 / 1);
+
+draw_circle(_gui_w/2,_gui_h/2 + _y,5,false);
+
+
+
+
 

@@ -76,10 +76,20 @@ if keyboard_check_pressed(ord("I"))
 #region temp
 
 if keyboard_check_pressed(vk_space)
+with(obj_game)
 	{
-	with(obj_game) scr_dw_dialoge_create("MEMES");
+	var _str="";
+	repeat( irandom_range(4,20) )
+		{
+		repeat(4)
+			_str+=string(ds_list_size(dw_list));
+		_str+=" ";
+		}
+	scr_dw_dialoge_create(_str);
 	}
-
 #endregion
+
+
+
 }
 #endregion
