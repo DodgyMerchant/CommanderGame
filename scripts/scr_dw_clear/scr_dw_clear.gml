@@ -9,7 +9,7 @@ but doesnt destroy it
 
 var _list;
 
-if dw_list[| 0] != -1
+if !ds_list_empty(dw_list)
 for (var i=0;i<ds_list_size(dw_list);i++)
 	{
 	_list = dw_list[| i];//get list

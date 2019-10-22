@@ -12,7 +12,7 @@ currently: 00:00
 returns a tring
 */
 
-var _sec,_min,_hour,_str;
+var _sec,_min,/*_hour,*/_str;
 
 //convert the numbers
 _sec = argument0 / 1000;

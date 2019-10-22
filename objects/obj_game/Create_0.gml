@@ -102,7 +102,6 @@ ow_grid_cell_size=30;//size of the displayed cells in pixels // 1x1
 ow_grid_cell_dead_size=UI_GENERAL_PAD;//4	//dead space of the inner cell to the outer cell
 ow_grid_cell_display_w=7;//displayed cells horizontally
 ow_grid_cell_display_h=7;//displayed cells vertically
-ow_grid=ds_grid_create(room_width div MAP_CELL_SIZE,room_height div MAP_CELL_SIZE);// 50 50
 ow_grid_x=0;	//the cell index displayed in the top right //the coordinates of the map on the field
 ow_grid_y=0;	//the cell index displayed in the top right
 
@@ -160,10 +159,11 @@ dw_notify_start=0;//holds the game time the wave is suposed to start
 
 #region enums
 
-enum DW_LIST
+enum DW_LIST_INDEX
 	{
 	text,
-	time,
+	type,
+	val,
 	HEIGHT
 	}
 
@@ -171,31 +171,61 @@ enum DW_LIST
 
 #endregion
 #endregion
-#region map conversion
+#region map
 
-#macro MAP_CELL_SIZE 16	//size of the cells on the room editor map || used for room to map translation
-
-
-
-
-
-
-#endregion
-
-
-
-
-#region test
-
-var _w,_h;
-_w=ds_grid_width(ow_grid);
-_h=ds_grid_height(ow_grid);
-
-for (var i=0;i<_w;i++)
-for (var ii=0;ii<_h;ii++)
+enum MAP_INDEX
 	{
-	ow_grid[# i,ii]=i+ii;
+	nothing=-1
 	}
 
+//#macro MAP_CELL_SIZE 16	//size of the cells on the room editor map || used for room to map translation
+//var _map_w = room_width div MAP_CELL_SIZE;//mapsize related to room size
+//var _map_h = room_height div MAP_CELL_SIZE;
+var _map_w = 20;
+var _map_h = 20;
+
+//former ow_grid
+map_grid=ds_grid_create(_map_w,_map_h);// 50 50
+
+ds_grid_set_region(map_grid,0,0,ds_grid_width(map_grid),ds_grid_height(map_grid),MAP_INDEX.nothing);
 
 #endregion
+#region Entity System
+
+#region enums
+
+enum ES_INDEX
+	{//types of data the enteties have
+	pos_x,		//grid position x
+	pos_y,		//grid position y
+	name,		//name of the entity
+	alignment,
+	hp,			//physical hp
+	stability,	//mental hp
+	inventory,	//a list/grid that halds the inventory
+	speed,
+	HEIGHT
+	}
+
+enum ALIGN_INDEX
+	{
+	order,
+	chaos,
+	rogue
+	}
+
+#endregion
+
+es_grid = ds_grid_create(1,ES_INDEX.HEIGHT);
+es_grid[# 0,0]=-1;
+
+scr_es_entity_create()
+
+
+
+
+
+
+
+#endregion
+

@@ -38,8 +38,8 @@ scr_drawbetter_frame(ow_x,ow_y,ow_x+ow_w,ow_y+ow_h,crt_color,ow_frame_alpha * gl
 var _x,_y;
 var _cell_num_w=(ow_w - ow_grid_dead_size*2) / ow_grid_cell_size;//number of cells that can be displayed w
 var _cell_num_h=(ow_h - ow_grid_dead_size*2) / ow_grid_cell_size;//number of cells that can be displayed w
-var _grid_w=ds_grid_width(ow_grid);
-var _grid_h=ds_grid_height(ow_grid);
+var _grid_w=ds_grid_width(map_grid);
+var _grid_h=ds_grid_height(map_grid);
 
 /*
 select_x1
@@ -121,7 +121,7 @@ for (var ii=0;ii<_cell_num_h;ii++)
 	draw_set_valign(0);
 	draw_set_halign(0);
 	draw_set_alpha(1);
-	draw_text(_x,_y,ow_grid[# ow_grid_x+i,ow_grid_y+ii]);
+	draw_text(_x,_y,map_grid[# ow_grid_x+i,ow_grid_y+ii]);
 	}
 
 #endregion
@@ -166,16 +166,17 @@ if !ds_list_empty(dw_list)//check for empty
 	var _h = _y2;
 	var _list,_str,_str_height,_str_height_ext;
 	//loop
-	var _size=ds_list_size(dw_list);
+	//var _size=ds_list_size(dw_list);
 	
 	//display text
-	var i=(_size-1)-dw_index;
+	//var i=(_size-1)-dw_index;
+	var i=dw_index;
 	var _line=0;
 	while(_line<dw_line_number and i>=0)
 		{
 		//get list and stuff
 		_list = dw_list[| i];
-		_str = _list[| DW_LIST.time]+"> "+_list[| DW_LIST.text];
+		_str = _list[| DW_LIST_INDEX.text];
 		_str_height=string_height(_str)+dw_line_sep;
 		_str_height_ext=string_height_ext(_str,_str_height,_w)+dw_line_sep;
 		
@@ -189,7 +190,8 @@ if !ds_list_empty(dw_list)//check for empty
 		_h -= _str_height_ext;
 		i--;
 		}
-	if i ==-1//if list it at end
+	
+	if i ==-1 and _line<dw_line_number//if list it at end
 		{
 		//display end phrase
 		var _str="";

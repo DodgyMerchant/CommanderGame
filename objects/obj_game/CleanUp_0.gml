@@ -7,6 +7,8 @@
 
 
 //Operational window
+ds_grid_destroy(map_grid);
+
 
 //dialogue window
 scr_dw_clear();

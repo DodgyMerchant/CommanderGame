@@ -16,13 +16,12 @@ data transmition so a message can be inspected
 {
 
 //set index
-if dw_index != 0//if not viewing the newest message
+if dw_index != ds_list_size(dw_list)-1//if not viewing the newest message
 	{
-	dw_index++;//let the index stay on the same message
-	dw_notify_count=dw_notify_num*dw_notify_duration*60;//notify player //play notify animation
 	
-	//reset animation
-	dw_notify_start=current_time;
+	//notify
+	dw_notify_count=dw_notify_num*dw_notify_duration*60;//notify player //play notify animation
+	dw_notify_start=current_time;//reset animation
 	
 	//play sound
 	if audio_is_playing(snd_notification)
@@ -32,12 +31,17 @@ if dw_index != 0//if not viewing the newest message
 	
 	audio_play_sound(snd_notification, 10, false);
 	}
+else //if viewing newest
+	{
+	dw_index++;//move with index
+	}
 
 var _list = ds_list_create();//create new list
 
 ds_list_add(dw_list,_list);//add to overall
 //fill
-_list[| DW_LIST.text] = argument0;
-_list[| DW_LIST.time] = mission_time_string;
+_list[| DW_LIST_INDEX.text] = mission_time_string+"> "+argument0;
+_list[| DW_LIST_INDEX.type] = 0;
+_list[| DW_LIST_INDEX.val] = 0;
 
 }

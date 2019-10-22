@@ -73,8 +73,8 @@ alt + ctrl		taken by screen rotate
 
 var _cell_num_w=(ow_w - ow_grid_dead_size*2) / ow_grid_cell_size;//number of cells that can be displayed w
 var _cell_num_h=(ow_h - ow_grid_dead_size*2) / ow_grid_cell_size;//number of cells that can be displayed w
-var _grid_w=ds_grid_width(ow_grid);
-var _grid_h=ds_grid_height(ow_grid);
+var _grid_w=ds_grid_width(map_grid);
+var _grid_h=ds_grid_height(map_grid);
 
 #region select general
 

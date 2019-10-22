@@ -18,24 +18,16 @@ var _cam = room_get_camera(room,0);
 draw_set_halign(0);
 var _y=20;
 
-/*
-if instance_exists(1)
-_y = scr_debug_txt(0,_y,
-"//////GAME//////",
-"mouse x|y: "+string(mouse_x)+"|"+string(mouse_y),
-);
-*/
 
 #region handler & general
 _y = scr_debug_txt(0,_y,
 
 "//////GENERAL//////",
 "mouse x|y: "+string(mouse_x)+"|"+string(mouse_y),
-"",
 "//////ROOM//////",
 "room: "+string(room),
-"w|h: "+string(room_width)+"|"+string(room_height),
-"camera: "+string(_cam),
+//"w|h: "+string(room_width)+"|"+string(room_height),
+//"camera: "+string(_cam),
 
 /*
 "//////VIEW//////",
@@ -69,20 +61,22 @@ if instance_exists(obj_game)
 with(obj_game)
 _y = scr_debug_txt(0,_y,
 "//////GAME//////",
-//*
+/*
 "//////OPERATIONAL WINDOW//////",
-"grid w|h: "+string(ds_grid_width(ow_grid))+"|"+string(ds_grid_height(ow_grid)),
+"grid w|h: "+string(ds_grid_width(map_grid))+"|"+string(ds_grid_height(map_grid)),
 "x|y: "+string(ow_grid_x)+"|"+string(ow_grid_y),
 "select 1x|y: "+string(select_x1)+"|"+string(select_y1),
 "select 2x|y: "+string(select_x2)+"|"+string(select_y2),
 "grab x|y: "+string(ow_mouse_grab_x)+"|"+string(ow_mouse_grab_y),
 //*/
-//*
+/*
 "//////DIALOGUE WINDOW//////",
 "d num: "+string(ds_list_size(dw_list)),
 "index: "+string(dw_index),
-"notify count: "+string(dw_notify_count),
-
+//*/
+//*
+"//////ENTITY SYSTEM//////",
+"number: "+string(es_grid[# 0,0]!=-1*ds_grid_width(es_grid)),
 //*/
 );
 #endregion
@@ -107,11 +101,16 @@ var _x = display_get_gui_width();
 
 //obj_game part
 if instance_exists(obj_game)
+with (obj_game)
 	{
-	_y = scr_debug_list(_x,_y,obj_game.select_list,"select");
-	//_y = scr_debug_grid(_x,_y,obj_game.ow_grid,"OW");
+	_y = scr_debug_list(_x,_y,select_list,"select");
+	
+	if !ds_list_empty(dw_list)
+		_y = scr_debug_list(_x,_y,dw_list[| dw_index],"select");
+	_y = scr_debug_grid(_x,_y,es_grid,"es");
+	
+	
 	}
-
 
 
 #endregion
