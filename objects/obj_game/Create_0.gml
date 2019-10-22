@@ -154,7 +154,7 @@ dw_list=ds_list_create();
 
 //
 dw_notify_num = 2;
-dw_notify_duration = 0.5;//in seconds
+dw_notify_duration = audio_sound_length(snd_notification)/dw_notify_num;//in seconds || 0.5
 dw_notify_count=0;
 dw_notify_start=0;//holds the game time the wave is suposed to start
 

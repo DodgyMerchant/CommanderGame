@@ -137,9 +137,7 @@ var _y2 = _view_h - UI_element_window_sep_h;
 
 #region draw frame and fill
 
-//temp
-if dw_notify_count>0
-	dw_notify_count--;
+
 
 //frame
 var _alpha=dw_frame_alpha;

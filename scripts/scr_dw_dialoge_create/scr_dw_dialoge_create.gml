@@ -21,7 +21,16 @@ if dw_index != 0//if not viewing the newest message
 	dw_index++;//let the index stay on the same message
 	dw_notify_count=dw_notify_num*dw_notify_duration*60;//notify player //play notify animation
 	
+	//reset animation
 	dw_notify_start=current_time;
+	
+	//play sound
+	if audio_is_playing(snd_notification)
+		{//stop double sound
+		audio_stop_sound(snd_notification)
+		}
+	
+	audio_play_sound(snd_notification, 10, false);
 	}
 
 var _list = ds_list_create();//create new list

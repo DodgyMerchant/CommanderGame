@@ -295,4 +295,9 @@ if point_in_rectangle(mouse_x,mouse_y,_x1,_y1,_x2,_y2)
 		dw_index = clamp(dw_index - _input_mouse_w,0,max(0,ds_list_size(dw_list)-1));
 	}
 
+//frame blink
+if dw_notify_count>0
+	dw_notify_count=max(0,dw_notify_count-1);
+	
+
 #endregion
