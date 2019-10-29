@@ -76,7 +76,10 @@ _y = scr_debug_txt(0,_y,
 //*/
 //*
 "//////ENTITY SYSTEM//////",
-"number: "+string(es_grid[# 0,0]!=-1*ds_grid_width(es_grid)),
+"number: "+string((es_grid[# 0,0]!=-1) * ds_grid_width(es_grid)),
+"current: "+string(current_time)+" | "+string(scr_timeconvert(current_time)),
+"delta: "+string(delta_time),
+"2m30s: "+string(scr_timeconvert(150000)),
 //*/
 );
 #endregion

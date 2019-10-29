@@ -70,25 +70,18 @@ if keyboard_check_pressed(ord("I"))
 	}
 
 #endregion
+#region space			message in dw
 
-
-//very temp
-#region NOT IN USE  space to message in dw
-/*
 if keyboard_check_pressed(vk_space)
 with(obj_game)
 	{
-	var _str="";
-	repeat( irandom_range(1,5) )
-		{
-		repeat(3)
-			_str+=string(ds_list_size(dw_list));
-		_str+=" ";
-		}
-	scr_dw_dialoge_create(_str);
+	scr_dw_dialoge_create(test_placeh_text_gen(3,6,4,string(ds_list_size(dw_list))),0,0);
 	}
-*/
+
 #endregion
+
+//very temp
+
 #region temp
 
 

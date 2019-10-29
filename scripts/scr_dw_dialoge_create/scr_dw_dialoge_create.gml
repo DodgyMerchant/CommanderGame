@@ -1,15 +1,9 @@
-/// @func scr_dw_dialoge_create(text);
+/// @func scr_dw_dialoge_create(text,type,value);
 /// @desc description
 /// @arg {real} text description
+/// @arg {real} type description
+/// @arg {real} value description
 
-/*
-future expansion
-
-data transmition so a message can be inspected
-
-"I saw something" -> inspect -> cam jumps to 'something'
-
-*/
 
 
 //with(obj_game) //maybe not needet
@@ -41,7 +35,7 @@ var _list = ds_list_create();//create new list
 ds_list_add(dw_list,_list);//add to overall
 //fill
 _list[| DW_LIST_INDEX.text] = mission_time_string+"> "+argument0;
-_list[| DW_LIST_INDEX.type] = 0;
-_list[| DW_LIST_INDEX.val] = 0;
+_list[| DW_LIST_INDEX.type] = argument1;
+_list[| DW_LIST_INDEX.val] = argument2;
 
 }

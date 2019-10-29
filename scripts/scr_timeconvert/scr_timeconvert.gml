@@ -15,12 +15,12 @@ returns a tring
 var _sec,_min,/*_hour,*/_str;
 
 //convert the numbers
-_sec = argument0 / 1000;
+_sec = argument0 div 1000;
 _min = _sec div 60;
 //_hour = _min div 60;
 
 //make string
-_str =/*string_format(_hour,2,0)+":"+*/string_format(_min,2,0)+":"+string_format(_sec,2,0);
+_str =/*string_format(_hour mod 60,2,0)+":"+*/string_format(_min mod 60,2,0)+":"+string_format(_sec mod 60,2,0);
 
 //replace " " with "0"
  for(var i=1;i<=8;i++)

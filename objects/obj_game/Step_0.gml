@@ -100,11 +100,21 @@ select_x2
 select_y2
 
 */
+
 if point_in_rectangle(mouse_x,mouse_y,ow_x,ow_y,ow_x+ow_w,ow_y+ow_h)
 	{
-	window_set_cursor(cr_none);
 	ow_mouse_active=true;
-	
+	window_set_cursor(cr_none);
+	}
+else
+	{
+	ow_mouse_active=false;
+	window_set_cursor(cr_default);
+	}
+
+//if in OW or moving the map
+if ow_mouse_active or (ow_mouse_grab_x!=-1 and ow_mouse_grab_y!=-1)
+	{
 	#region select
 	if _input_mouse_l_p
 		{
@@ -159,16 +169,6 @@ if point_in_rectangle(mouse_x,mouse_y,ow_x,ow_y,ow_x+ow_w,ow_y+ow_h)
 			ow_mouse_grab_y=-1;
 			}
 	#endregion
-	
-	}
-else
-	{
-	window_set_cursor(cr_default);
-	ow_mouse_active=false;
-	
-	//reset
-	ow_mouse_grab_x=-1;
-	ow_mouse_grab_y=-1;
 	}
 
 #endregion
