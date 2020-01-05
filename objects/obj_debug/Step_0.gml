@@ -34,7 +34,7 @@ if keyboard_check_pressed(vk_escape)
 
 //custom
 #region arrow keys		Camera Controll		INACTIVE
-/*
+//*
 var _x_input = keyboard_check(vk_right) - keyboard_check(vk_left);
 var _y_input = keyboard_check(vk_down) - keyboard_check(vk_up);
 
@@ -47,7 +47,7 @@ if _x_input!=0 or _y_input!=0
 	global.Camera_x_true+= _x_input * _speed;
 	global.Camera_y_true+= _y_input * _speed;
 	}
-*/
+//*/
 #endregion
 #region camera mumbo jumbo					INACTIVE
 /*

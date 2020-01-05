@@ -283,7 +283,7 @@ else //move select
 #region dialogue window
 
 var _x1 = UI_element_window_sep_w;
-var _x2 = ow_x - UI_element_sep_w;
+var _x2 = ow_x - UI_GENERAL_SEP;
 var _y1 = _view_h - UI_element_window_sep_h - dw_height;
 var _y2 = _view_h - UI_element_window_sep_h;
 

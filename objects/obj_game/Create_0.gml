@@ -62,13 +62,8 @@ ds_grid_set_region(map_grid,0,0,ds_grid_width(map_grid),ds_grid_height(map_grid)
 #endregion
 #region Entity System
 
-
 es_grid = ds_grid_create(1,ES_INDEX.HEIGHT);
 es_grid[# 0,0]=-1;
-
-
-
-
 
 
 
@@ -82,15 +77,13 @@ es_grid[# 0,0]=-1;
 global.Alpha_master=1;
 global.Color_CRT=c_lime;
 global.Color_BAD=c_red;
-
+draw_set_font(fn_normal);
+global.Font_H=string_height("A");
 
 #macro UI_GENERAL_SEP 10
 #macro UI_GENERAL_PAD 4
 #macro UI_GENERAL_FRAME_A 0.5
 #macro UI_GENERAL_FILL_A 0.1
-
-UI_element_sep_w = UI_GENERAL_SEP;
-UI_element_sep_h = UI_GENERAL_SEP;
 
 frame_sep_w=UI_GENERAL_SEP;	//seperation of the frame from the window border
 frame_sep_h=UI_GENERAL_SEP;
@@ -178,8 +171,8 @@ dw_index=0; //which dialogue message is focused
 dw_line_sep=1;//seperation between the lines of text
 dw_line_number = 6;//numer of indexes to display
 
-draw_set_font(dw_font);
-dw_height = string_height("A")*dw_line_number + dw_frame_sep*2 + dw_line_sep*(dw_line_number-1);
+
+dw_height = global.Font_H*dw_line_number + dw_frame_sep*2 + dw_line_sep*(dw_line_number-1);
 
 //system
 dw_list=ds_list_create();
@@ -231,9 +224,7 @@ mission_time_string=scr_timeconvert(mission_time);// "00:00:00"  shows the passe
 
 
 
-//spawn team
-scr_es_entity_create(0,0,"Test1",ALIGN_INDEX.order,10,10,-1,1);
-scr_es_entity_create(1,1,"Test2",ALIGN_INDEX.chaos,10,10,-1,1);
+
 
 
 
@@ -288,5 +279,9 @@ enum ALIGN_INDEX
 repeat (3)
 	scr_dw_dialoge_create(test_placeh_text_gen(3,6,4,string(ds_list_size(dw_list))),0,0);
 
+
+//spawn test entities
+scr_es_entity_create(0,0,"Test1",ALIGN_INDEX.order,10,10,-1,1);
+scr_es_entity_create(1,1,"Test2",ALIGN_INDEX.chaos,10,10,-1,1);
 
 #endregion

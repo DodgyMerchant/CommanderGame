@@ -11,7 +11,7 @@ camera_get_view_y(view_camera[0])
 
 
 #region mouse wheel zoom
-/*
+//*
 var _input_wheel = mouse_wheel_down() - mouse_wheel_up();
 
 if _input_wheel!=0
@@ -22,7 +22,7 @@ if _input_wheel!=0
 	
 	
 	}
-*/
+//*/
 #endregion
 
 #region auto zoom

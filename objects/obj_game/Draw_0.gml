@@ -108,17 +108,7 @@ for (var i= ow_grid_x!=0;i<_cell_num_w + (ow_grid_x==(_grid_w-_cell_num_w));i++)
 	
 	//get x
 	_x=ow_x + ow_grid_cell_size * i + ow_grid_dead_size;
-	
-	//draw lines
-	if !_stage//normal
-		scr_drawbetter_line(_x,ow_y+ow_grid_dead_size,_x,ow_y+ow_h-ow_grid_dead_size,global.Color_CRT,_alpha);//vert lines
-	else//striped stage line
-		for (var ii=0;ii<_cell_num_w;ii++)
-			{
-			var 
-			//draw only one cell line
-			scr_drawbetter_line(_x,ow_y+ow_grid_dead_size + ow_grid_cell_size*i,_x,ow_y+ow_h-ow_grid_dead_size,global.Color_CRT,_alpha);//vert lines
-			}
+	scr_drawbetter_line(_x,ow_y+ow_grid_dead_size,_x,ow_y+ow_h-ow_grid_dead_size,global.Color_CRT,_alpha);//vert lines
 	}
 #endregion
 #region hor lines
@@ -226,12 +216,11 @@ for (var ii=0;ii<_cell_num_h;ii++)
 
 
 var _x1 = UI_element_window_sep_w;
-var _x2 = ow_x - UI_element_sep_w;
+var _x2 = ow_x - UI_GENERAL_SEP;
 var _y1 = _view_h - UI_element_window_sep_h - dw_height;
 var _y2 = _view_h - UI_element_window_sep_h;
 
 #region draw frame and fill
-
 
 
 //frame
@@ -273,7 +262,7 @@ if !ds_list_empty(dw_list)//check for empty
 		//get list and stuff
 		_list = dw_list[| i];
 		_str = _list[| DW_LIST_INDEX.text];
-		_str_height=string_height(_str)+dw_line_sep;
+		_str_height=global.Font_H+dw_line_sep;
 		_str_height_ext=string_height_ext(_str,_str_height,_w)+dw_line_sep;
 		
 		_line+= _str_height_ext div _str_height;
@@ -310,18 +299,53 @@ if !ds_list_empty(dw_list)//check for empty
 
 scr_drawbetter_frame(sw_x,sw_y,sw_x+sw_w,sw_y+sw_h,global.Color_CRT,sw_frame_alpha,1);
 
+//get usable space
 var _x1=sw_x+UI_GENERAL_PAD;
 var _y1=sw_y+UI_GENERAL_PAD;
 var _x2=sw_x+sw_w-UI_GENERAL_PAD;
-var _y2=sw_y+sw_h-UI_GENERAL_PAD;
-
-//scr_drawbetter_rec(_x1,_y1,_x2,_y2,global.Color_CRT,sw_fill_alpha);
-
-var _h = (_y2-_y1) / sprite_get_height(spr_sw_BodyFull);
-var _w = _h;
-draw_sprite_ext(spr_sw_BodyFull,0,_x1,_y1,_w,_h,0,global.Color_CRT,1);
+var _y2=sw_y+sw_h-UI_GENERAL_PAD
+var _w=_x2-_x1;
+var _h=_y2-_y1;
 
 
+#region get info
+//shape xy
+var _sx=_x2 - sprite_get_width(spr_sw_BodyFull) - 1;
+var _sy=_y1 + 1;
+//background shape x
+var _bsx = _sx - 1;//1 for distance to sprite
+//shape line x
+var _lsx= _bsx - UI_GENERAL_PAD;
+//background name y2
+var _bnx2 = _lsx - UI_GENERAL_PAD;
+var _bny2 = _y1 + global.Font_H;
+//line name
+var _lny = _bny2 + UI_GENERAL_PAD;
+
+#endregion
+#region draw
+#region back
+//back shape
+scr_drawbetter_rec(_bsx,_y1,_x2,_y2,global.Color_CRT,sw_fill_alpha);
+//back name
+scr_drawbetter_rec(_x1,_y1,_bnx2,_bny2,global.Color_CRT,sw_fill_alpha);
+
+//back
+
+#endregion
+#region line
+//line shape
+scr_drawbetter_line(_lsx,sw_y+1,_lsx,sw_y+sw_h-1,global.Color_CRT,sw_frame_alpha);
+//line name
+scr_drawbetter_line(sw_x+1,_lny,_lsx,_lny,global.Color_CRT,sw_frame_alpha);
+
+#endregion
+#region special
+//shape
+draw_sprite_ext(spr_sw_BodyFull,0,_sx,_sy,1,1,0,global.Color_CRT,1);
+
+#endregion
+#endregion
 
 #endregion
 #region pointer
@@ -364,3 +388,12 @@ else
 #endregion
 
 draw_set_alpha(1);
+
+var _x=50;
+var _y=50;
+var _w=100;
+var _h=50;
+scr_drawbetter_frame(_x,_y,_x+_w,_y+_h,global.Color_CRT,0.5,1);
+scr_drawbetter_rec(_x,_y+_h,_x+_w,_y+_h*2,global.Color_CRT,0.5);
+draw_set_color(c_red);
+draw_point(_x+_w+1,_y);

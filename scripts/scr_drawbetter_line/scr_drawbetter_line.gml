@@ -21,4 +21,15 @@ argument5	= alpha
 var _rot = point_direction(argument0,argument1,argument2,argument3);
 var _dis = point_distance(argument0,argument1,argument2,argument3);
 
-draw_sprite_ext(spr_pixel,0,argument0,argument1,_dis,1,_rot,argument4,argument5);
+//compensation for rotation of srite and origin change
+var _x_comp= ((_rot + 45)%360) div 180;
+var _y_comp= ((_rot + 90 + 45)%360) div 180;
+/*
+r	x	y
+0	0	0
+90	0	+1
+180	+1	+1
+270	+1	0
+*/
+
+draw_sprite_ext(spr_pixel,0,argument0 + _x_comp,argument1 + _y_comp,_dis,1,_rot,argument4,argument5);

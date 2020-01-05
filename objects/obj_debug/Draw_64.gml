@@ -57,6 +57,8 @@ _y = scr_debug_txt(0,_y,
 #endregion
 #region game
 
+var _dir = point_direction(camera_get_view_width(_cam)/2,camera_get_view_height(_cam)/2,mouse_x,mouse_y);
+
 if instance_exists(obj_game)
 with(obj_game)
 _y = scr_debug_txt(0,_y,
