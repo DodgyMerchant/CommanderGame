@@ -50,6 +50,6 @@ ow_grid[# _x,_y]= ( es_grid[# _index,ES_INDEX.alignment]==ALIGN_INDEX.order ? OW
 
 //error
 if i != argument_count
-	show_debug_message("///// Entity Sysztem Entity Create error: too many values given /////");
+	show_debug_message("///// Entity System Entity Create error: too many values given /////");
 if i != ES_INDEX.HEIGHT
-	show_debug_message("///// Entity Sysztem Entity Create error: not all values given /////");
+	show_debug_message("///// Entity System Entity Create error: not all values given /////");
